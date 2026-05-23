@@ -1,6 +1,6 @@
 # GigFlow — Smart Leads Dashboard
 
-## 🚀 Live Demo
+## Live Demo
 
 | | Link |
 |--|--|
