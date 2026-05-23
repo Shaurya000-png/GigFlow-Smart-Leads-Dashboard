@@ -1,5 +1,16 @@
 # GigFlow — Smart Leads Dashboard
 
+## 🚀 Live Demo
+
+| | Link |
+|--|--|
+| **Frontend** | [gigflow-psi-two.vercel.app](https://gigflow-psi-two.vercel.app) |
+| **Backend API** | [your-backend.onrender.com/api/health](https://your-backend.onrender.com/api/health) |
+| **Demo Admin** | demo.admin@gigflow.com / Demo123! |
+| **Demo Sales** | demo.sales@gigflow.com / Demo123! |
+
+> Replace `your-backend.onrender.com` with the actual Render URL once deployed.
+
 GigFlow is a full-stack SaaS-style lead operations dashboard for sales teams. It centralizes lead intake, filtering, role-based access, and CSV exports behind a secure JWT-authenticated API and a responsive React interface.
 
 **Repository:** [https://github.com/Shaurya000-png/GigFlow-Smart-Leads-Dashboard](https://github.com/Shaurya000-png/GigFlow-Smart-Leads-Dashboard)
@@ -299,6 +310,8 @@ Both use Node.js 20 LTS with npm caching.
 ---
 
 ## Deployment
+
+> The frontend is live at https://gigflow-psi-two.vercel.app
 
 ### Frontend — Vercel
 
