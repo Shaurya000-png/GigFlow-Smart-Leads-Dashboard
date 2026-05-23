@@ -5,11 +5,9 @@
 | | Link |
 |--|--|
 | **Frontend** | [gigflow-psi-two.vercel.app](https://gigflow-psi-two.vercel.app) |
-| **Backend API** | [your-backend.onrender.com/api/health](https://your-backend.onrender.com/api/health) |
+| **Backend API** | [gigflow-smart-leads-dashboard-xkab.onrender.com/api/health](https://gigflow-smart-leads-dashboard-xkab.onrender.com/api/health) |
 | **Demo Admin** | demo.admin@gigflow.com / Demo123! |
 | **Demo Sales** | demo.sales@gigflow.com / Demo123! |
-
-> Replace `your-backend.onrender.com` with the actual Render URL once deployed.
 
 GigFlow is a full-stack SaaS-style lead operations dashboard for sales teams. It centralizes lead intake, filtering, role-based access, and CSV exports behind a secure JWT-authenticated API and a responsive React interface.
 
@@ -180,7 +178,7 @@ Healthchecks are configured for `mongo`, `backend`, and `frontend`.
 **Example (production):**
 
 ```env
-VITE_API_URL=https://your-api.onrender.com/api
+VITE_API_URL=https://gigflow-smart-leads-dashboard-xkab.onrender.com/api
 ```
 
 ---
@@ -312,6 +310,7 @@ Both use Node.js 20 LTS with npm caching.
 ## Deployment
 
 > The frontend is live at https://gigflow-psi-two.vercel.app
+> The backend API is live at https://gigflow-smart-leads-dashboard-xkab.onrender.com/api
 
 ### Frontend — Vercel
 
@@ -322,7 +321,7 @@ Both use Node.js 20 LTS with npm caching.
 5. Environment variable:
 
    ```env
-   VITE_API_URL=https://<your-backend-host>/api
+   VITE_API_URL=https://gigflow-smart-leads-dashboard-xkab.onrender.com/api
    ```
 
 `vercel.json` includes SPA rewrite rules.
