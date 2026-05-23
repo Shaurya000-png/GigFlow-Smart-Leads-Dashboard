@@ -11,6 +11,21 @@ dotenv.config({ path: path.join(__dirname, '../../.env') });
 resetEnvCache();
 
 const DATASETS_DIR = path.join(__dirname, '../../../datasets');
+const LEGACY_DEMO_EMAILS = ['admin@gigflow.com', 'john@gigflow.com'];
+const DEMO_USERS: DemoUser[] = [
+  {
+    name: 'Demo Admin',
+    email: 'demo.admin@gigflow.com',
+    password: 'Demo123!',
+    role: 'admin',
+  },
+  {
+    name: 'Demo Sales',
+    email: 'demo.sales@gigflow.com',
+    password: 'Demo123!',
+    role: 'sales',
+  },
+];
 
 interface DemoUser {
   name: string;
@@ -36,23 +51,30 @@ const loadJson = <T>(filename: string): T => {
 const seed = async () => {
   await connectDB();
 
-  const { users } = loadJson<{ users: DemoUser[] }>('demo-users.json');
   const { leads } = loadJson<{ leads: SeedLead[] }>('leads.json');
+  const adminLeadCount = leads.filter((l) => l.owner === 'admin').length;
+  const salesLeadCount = leads.filter((l) => l.owner === 'sales').length;
 
-  const demoEmails = users.map((u) => u.email.toLowerCase());
+  if (leads.length !== 20 || adminLeadCount !== 12 || salesLeadCount !== 8) {
+    throw new Error(
+      `Seed dataset must contain exactly 20 leads: 12 admin and 8 sales. Found ${leads.length} total, ${adminLeadCount} admin, ${salesLeadCount} sales.`
+    );
+  }
+
+  const demoEmails = [
+    ...DEMO_USERS.map((u) => u.email.toLowerCase()),
+    ...LEGACY_DEMO_EMAILS,
+  ];
 
   console.log('Clearing existing demo data...');
-  const existingDemoUsers = await User.find({ email: { $in: demoEmails } });
-  const demoUserIds = existingDemoUsers.map((u) => u._id.toString());
-  if (demoUserIds.length > 0) {
-    await Lead.deleteMany({ createdBy: { $in: demoUserIds } });
-  }
+  await Lead.deleteMany({});
   await User.deleteMany({ email: { $in: demoEmails } });
 
   console.log('Creating demo users...');
   const userByRole: Record<string, string> = {};
-  for (const userData of users) {
-    const user = await User.create(userData);
+  for (const userData of DEMO_USERS) {
+    const user = new User(userData);
+    await user.save();
     userByRole[user.role] = user._id.toString();
     console.log(`  ${user.role}: ${user.email}`);
   }
@@ -67,14 +89,11 @@ const seed = async () => {
   }));
   await Lead.insertMany(leadDocs);
 
-  const adminCount = leads.filter((l) => l.owner === 'admin').length;
-  const salesCount = leads.filter((l) => l.owner === 'sales').length;
-
   console.log('\nSeed complete!');
-  console.log(`  Admin leads: ${adminCount} (admin sees all ${leads.length} on dashboard)`);
-  console.log(`  Sales leads: ${salesCount} (sales sees only their ${salesCount})`);
+  console.log(`  Admin leads: ${adminLeadCount} (admin sees all ${leads.length} on dashboard)`);
+  console.log(`  Sales leads: ${salesLeadCount} (sales sees only their ${salesLeadCount})`);
   console.log('\nDemo logins:');
-  for (const u of users) {
+  for (const u of DEMO_USERS) {
     console.log(`  ${u.role}: ${u.email} / ${u.password}`);
   }
 

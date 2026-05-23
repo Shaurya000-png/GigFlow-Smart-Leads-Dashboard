@@ -16,6 +16,7 @@ const router = Router();
 
 router.use(protect);
 
+router.get('/export', requireRole('admin'), validate(leadQuerySchema, 'query'), exportLeadsCSV);
 router.get('/export/csv', requireRole('admin'), validate(leadQuerySchema, 'query'), exportLeadsCSV);
 router.get('/', validate(leadQuerySchema, 'query'), getLeads);
 router.post('/', validate(createLeadSchema), createLead);
