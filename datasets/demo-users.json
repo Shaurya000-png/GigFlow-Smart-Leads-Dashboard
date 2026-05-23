@@ -1,0 +1,17 @@
+{
+  "description": "Demo accounts for GigFlow showcase (screen recording & GitHub visitors)",
+  "users": [
+    {
+      "name": "Demo Admin",
+      "email": "demo.admin@gigflow.com",
+      "password": "Demo123!",
+      "role": "admin"
+    },
+    {
+      "name": "Demo Sales",
+      "email": "demo.sales@gigflow.com",
+      "password": "Demo123!",
+      "role": "sales"
+    }
+  ]
+}
