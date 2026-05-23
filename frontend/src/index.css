@@ -1,0 +1,173 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-background: #f4f6fb;
+    --color-surface: #ffffff;
+    --color-surface-elevated: #eef2f9;
+    --color-border: #c5d0e4;
+    --color-textMain: #0a1628;
+    --color-textMuted: #4a5f7a;
+    --color-primary: #2d4a9e;
+    --color-primaryHover: #3d5cb8;
+    --color-accent: #1e3a6e;
+    --color-glow: rgba(45, 74, 158, 0.12);
+  }
+
+  .dark {
+    --color-background: #04050a;
+    --color-surface: #0a1020;
+    --color-surface-elevated: #0f1729;
+    --color-border: #1a2744;
+    --color-textMain: #d8e0ed;
+    --color-textMuted: #6b7f9e;
+    --color-primary: #4d6dff;
+    --color-primaryHover: #6b84ff;
+    --color-accent: #8ba4e8;
+    --color-glow: rgba(77, 109, 255, 0.15);
+  }
+
+  html {
+    font-size: 14px;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-textMain font-sans antialiased;
+    background-image:
+      radial-gradient(ellipse 80% 50% at 50% -20%, var(--color-glow), transparent),
+      radial-gradient(ellipse 60% 40% at 100% 100%, rgba(15, 23, 41, 0.4), transparent);
+  }
+
+  .dark body {
+    background-image:
+      radial-gradient(ellipse 70% 45% at 50% -15%, var(--color-glow), transparent),
+      radial-gradient(ellipse 50% 35% at 0% 100%, rgba(26, 39, 68, 0.5), transparent),
+      radial-gradient(ellipse 40% 30% at 100% 80%, rgba(10, 16, 32, 0.8), transparent);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer utilities {
+  .text-premium {
+    @apply tracking-tight text-textMain;
+    letter-spacing: -0.02em;
+  }
+
+  .text-premium-muted {
+    @apply text-textMuted tracking-wide;
+    font-size: 0.8125rem;
+  }
+
+  .surface-card {
+    @apply bg-surface border border-border rounded-xl;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.03) inset;
+  }
+
+  .dark .surface-card {
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.04) inset,
+      0 4px 24px rgba(0, 0, 0, 0.35);
+  }
+
+  .glass-panel {
+    background-color: color-mix(in srgb, var(--color-surface) 88%, transparent);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--color-border);
+  }
+
+  /* Ensure animated content is visible even if animation is skipped */
+  .animate-fade-in,
+  .animate-fade-in-up,
+  .animate-text-reveal {
+    animation-fill-mode: forwards;
+  }
+
+  /* Form fields — black text on white (inputs, selects, autofill) */
+  .form-field,
+  .filter-select,
+  .filter-select option {
+    color: #0a1628 !important;
+    background-color: #ffffff !important;
+    caret-color: #0a1628;
+  }
+
+  .form-field::placeholder {
+    color: #6b7280 !important;
+  }
+
+  input.form-field:-webkit-autofill,
+  input.form-field:-webkit-autofill:hover,
+  input.form-field:-webkit-autofill:focus,
+  input.form-field:-webkit-autofill:active {
+    -webkit-text-fill-color: #0a1628 !important;
+    -webkit-box-shadow: 0 0 0 1000px #ffffff inset !important;
+    box-shadow: 0 0 0 1000px #ffffff inset !important;
+    caret-color: #0a1628;
+    transition: background-color 5000s ease-in-out 0s;
+  }
+
+  /* Password show/hide — visible = plain text, hidden = masked */
+  input.form-field.password-visible {
+    -webkit-text-security: none !important;
+    text-security: none !important;
+  }
+
+  input.form-field.password-hidden {
+    -webkit-text-security: none;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes text-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+    letter-spacing: 0.06em;
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    letter-spacing: -0.02em;
+  }
+}
+
+@keyframes subtle-glow {
+  0%,
+  100% {
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 1;
+  }
+}
