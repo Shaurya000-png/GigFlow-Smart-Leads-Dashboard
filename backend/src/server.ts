@@ -4,6 +4,8 @@ import { connectDB } from './config/db';
 import { logger } from './utils/logger';
 import createApp from './app';
 
+import { autoSeed } from './utils/autoseed';
+
 dotenv.config();
 
 export const startServer = async () => {
@@ -11,6 +13,7 @@ export const startServer = async () => {
   const app = createApp();
 
   await connectDB();
+  await autoSeed();
 
   return app.listen(env.PORT, () => {
     logger.info(`GigFlow API running`, {
