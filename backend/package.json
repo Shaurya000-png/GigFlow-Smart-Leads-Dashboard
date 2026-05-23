@@ -5,8 +5,8 @@
   "main": "dist/server.js",
   "scripts": {
     "start": "node dist/server.js",
-    "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
-    "build": "npx tsc",
+    "dev": "ts-node-dev src/server.ts",
+    "build": "tsc",
     "typecheck": "tsc --noEmit",
     "lint": "tsc --noEmit",
     "test": "jest --runInBand --forceExit",
