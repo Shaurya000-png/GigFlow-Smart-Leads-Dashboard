@@ -4,7 +4,7 @@
 
 | | Link |
 |--|--|
-| **Frontend** | [gigflow-psi-two.vercel.app](https://gigflow-psi-two.vercel.app) |
+| **Frontend** | [frontend-beta-two-15.vercel.app](https://frontend-beta-two-15.vercel.app) |
 | **Backend API** | [gigflow-smart-leads-dashboard-xkab.onrender.com/api/health](https://gigflow-smart-leads-dashboard-xkab.onrender.com/api/health) |
 | **Demo Admin** | demo.admin@gigflow.com / Demo123! |
 | **Demo Sales** | demo.sales@gigflow.com / Demo123! |
@@ -309,7 +309,7 @@ Both use Node.js 20 LTS with npm caching.
 
 ## Deployment
 
-> The frontend is live at https://gigflow-psi-two.vercel.app
+> The frontend is live at https://frontend-beta-two-15.vercel.app
 > The backend API is live at https://gigflow-smart-leads-dashboard-xkab.onrender.com/api
 
 ### Frontend — Vercel
